@@ -1,4 +1,5 @@
-@import "tailwindcss";
+@config "../../tailwind.config.ts";
+@import 'tailwindcss';
 
 /* Import fonts */
 @import url("https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap");
@@ -41,7 +42,7 @@
 /* Utility classes */
 @layer utilities {
   .text-gradient {
-    @apply from-metal-chrome to-metal-bright bg-gradient-to-r bg-clip-text text-transparent;
+    @apply bg-gradient-to-r from-metal-chrome to-metal-bright bg-clip-text text-transparent;
   }
 
   .border-gradient {

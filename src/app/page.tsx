@@ -1,6 +1,16 @@
 "use client";
 
+import { useRef } from "react";
+
 export default function HomePage() {
+  const workRef = useRef<HTMLElement>(null);
+
+  const handleScrollToWork = () => {
+    workRef.current?.scrollIntoView({
+      behavior: "smooth",
+    });
+  };
+
   return (
     <div className="min-h-screen">
       {/* Hero Section */}
@@ -10,10 +20,13 @@ export default function HomePage() {
             <span className="text-gradient">Hi, I&apos;m Joey.</span>
           </h1>
           <p className="text-metal-silver animate-slide-up mb-8 text-xl md:text-2xl">
-            I make code that works for people.
+            I write code that works for people.
           </p>
           <div className="animate-slide-up flex justify-center gap-4" style={{ animationDelay: "0.2s" }}>
-            <button className="bg-accent-green text-metal-black hover:bg-accent-green-light rounded px-6 py-3 font-medium transition-colors">
+            <button
+              onClick={handleScrollToWork}
+              className="bg-accent-green text-metal-black hover:bg-accent-green-light rounded px-6 py-3 font-medium transition-colors"
+            >
               View My Work
             </button>
             <button
@@ -27,7 +40,7 @@ export default function HomePage() {
       </section>
 
       {/* Featured Projects Placeholder */}
-      <section className="px-4 py-20">
+      <section ref={workRef} className="px-4 py-20">
         <div className="mx-auto max-w-6xl">
           <h2 className="font-display mb-12 text-center text-3xl font-bold md:text-4xl">Featured Work</h2>
           <div className="grid gap-8 md:grid-cols-2 lg:grid-cols-3">

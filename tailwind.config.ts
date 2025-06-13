@@ -10,18 +10,14 @@ const config: Config = {
     extend: {
       colors: {
         // Liquid Metal color palette
-        metal: {
-          black: "#000000",
-          dark: "#0A0A0A",
-          chrome: "#C0C0C0",
-          silver: "#E5E5E5",
-          bright: "#F5F5F5",
-        },
-        accent: {
-          green: "#228B22",
-          "green-light": "#32CD32",
-          "green-dark": "#006400",
-        },
+        "metal-black": "#000000",
+        "metal-dark": "#0A0A0A",
+        "metal-chrome": "#C0C0C0",
+        "metal-silver": "#E5E5E5",
+        "metal-bright": "#F5F5F5",
+        "accent-green": "#228B22",
+        "accent-green-light": "#32CD32",
+        "accent-green-dark": "#006400",
       },
       fontFamily: {
         sans: ["Inter", "system-ui", "sans-serif"],
