@@ -13,9 +13,17 @@ body {
 	line-height: 1.2;
 	min-height: 100vh;
 	padding: 10px;
+	overflow-x: hidden;
 }
 
-#terminal { word-wrap: break-word; }
+#terminal {
+	word-wrap: break-word;
+	min-height: calc(100vh - 20px);
+	display: flex;
+	flex-direction: column;
+}
+
+#output { flex: 1; }
 
 #output div { white-space: pre-wrap; }
 
@@ -42,4 +50,9 @@ body {
 @media (max-width: 1175px) {
 	.ascii-large { display: none; }
 	.ascii-small { display: block; }
+}
+
+@media (max-width: 480px) {
+	body { font-size: 14px; }
+	.ascii-small { font-size: 8px; line-height: 1; }
 }
