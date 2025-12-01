@@ -30,6 +30,16 @@ export const commands = {
 			return { html: `<img src="/JoeyPic.JPG" alt="Joey">` }
 		}
 	},
+	contact: {
+		desc: "To hire me",
+		run: () => {
+			return [
+				{ html: `Email me at <a href="mailto:josephcrawford99@gmail.com">josephcrawford99@gmail.com</a>` },
+				{ html: `LinkedIn: <a href="https://www.linkedin.com/in/josephcrawford99/">https://www.linkedin.com/in/josephcrawford99/</a>` },
+				{ html: `GitHub: <a href="https://github.com/josephcrawford99">https://github.com/josephcrawford99</a>` }
+			]
+		}
+	},
 	welcome: {
 		desc: "Welcome message",
 		run: () => [
