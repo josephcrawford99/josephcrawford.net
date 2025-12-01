@@ -12,9 +12,30 @@ body {
 	font-size: 16px;
 	line-height: 1.2;
 	min-height: 100vh;
-	padding: 10px;
+	padding: 50px 10px 10px;
 	overflow-x: hidden;
 }
+
+header {
+	position: fixed;
+	top: 0;
+	left: 0;
+	right: 0;
+	padding: 10px;
+	background: #000;
+	border-bottom: 1px solid #0f0;
+	z-index: 100;
+}
+
+header a {
+	color: #0f0;
+	text-decoration: none;
+	margin-right: 20px;
+}
+
+header a::before { content: ''; }
+
+header a:hover::before { content: '> '; }
 
 #terminal { word-wrap: break-word; }
 
@@ -47,4 +68,96 @@ body {
 
 @media (max-width: 480px) {
 	.ascii-small { font-size: 8px; line-height: 1; }
+}
+
+/* Resume & Contact Pages */
+main {
+	max-width: 800px;
+	line-height: 1.6;
+}
+
+main a {
+	color: #0f0;
+}
+
+main a:hover {
+	text-decoration: none;
+}
+
+h1 {
+	font-size: 24px;
+	margin-bottom: 5px;
+	font-weight: normal;
+}
+
+h2 {
+	font-size: 18px;
+	margin: 30px 0 15px;
+	font-weight: normal;
+	border-bottom: 1px solid #0f0;
+	padding-bottom: 5px;
+}
+
+h3 {
+	font-size: 16px;
+	font-weight: normal;
+	margin-bottom: 10px;
+}
+
+.tagline {
+	color: #0a0;
+	margin-bottom: 20px;
+}
+
+section { margin-bottom: 30px; }
+
+.job { margin-bottom: 20px; }
+
+.job-header {
+	display: flex;
+	justify-content: space-between;
+	flex-wrap: wrap;
+}
+
+.job-title { font-weight: bold; }
+
+.job-date { color: #0a0; }
+
+.job-company { margin-bottom: 10px; }
+
+.job ul, .skill-list, .contact-list {
+	list-style: none;
+	margin-left: 20px;
+}
+
+.job li::before, .skill-list li::before, .contact-list li::before {
+	content: '> ';
+}
+
+.project {
+	margin-bottom: 15px;
+}
+
+.project-title {
+	font-weight: bold;
+}
+
+.project p {
+	margin-left: 20px;
+	color: #0a0;
+}
+
+.skills {
+	display: flex;
+	gap: 60px;
+	flex-wrap: wrap;
+}
+
+.contact-list li {
+	margin-bottom: 10px;
+}
+
+.label {
+	display: inline-block;
+	min-width: 80px;
 }
