@@ -1,28 +1,58 @@
 <!DOCTYPE html>
 <html lang="en">
-
 <head>
 	<meta charset="UTF-8">
 	<meta name="viewport" content="width=device-width, initial-scale=1.0">
 	<link rel="stylesheet" href="styles.css">
-	<link rel="icon"
-		href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><text y=%22.9em%22 font-size=%2290%22>🫡</text></svg>">
+	<link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><text y=%22.9em%22 font-size=%2290%22>🫡</text></svg>">
 	<title>Joey Crawford</title>
 </head>
-
 <body>
-	<header>
-		<h1>Joey Crawford</h1>
-	</header>
-	<section>
-		<h2>About Me</h2>
-		<p>I am a guy and this is my website </p>
-		<img src="/JoeyPic.JPG" alt="It's me!">
-	</section>
-	<!-- Add more sections as needed -->
-	<footer>
-		<p>Contact me at <a href="mailto:josephcrawford99@gmail.com">josephcrawford99@gmail.com</a></p>
-	</footer>
-</body>
+	<div id="terminal">
+		<div id="output"></div>
+		<div id="input-line">
+			<span class="prompt">visitor@joey:~$</span>
+			<input type="text" id="cmd" autofocus autocomplete="off" spellcheck="false">
+		</div>
+	</div>
+	<script>
+		const commands = {
+			help: () => "Available commands: help\n\nType a command and press Enter."
+		};
 
+		const output = document.getElementById('output');
+		const cmd = document.getElementById('cmd');
+
+		function print(text, isCommand = false) {
+			const line = document.createElement('div');
+			line.textContent = isCommand ? `visitor@joey:~$ ${text}` : text;
+			if (isCommand) line.className = 'cmd-line';
+			output.appendChild(line);
+			window.scrollTo(0, document.body.scrollHeight);
+		}
+
+		async function run(input) {
+			const args = input.trim().split(/\s+/);
+			const name = args[0].toLowerCase();
+			if (!name) return;
+			print(input, true);
+			const fn = commands[name];
+			if (fn) {
+				const result = await fn(args.slice(1));
+				if (result) print(result);
+			} else {
+				print(`Command not found: ${name}. Type 'help' for available commands.`);
+			}
+		}
+
+		cmd.addEventListener('keydown', async (e) => {
+			if (e.key === 'Enter') {
+				await run(cmd.value);
+				cmd.value = '';
+			}
+		});
+
+		document.body.addEventListener('click', () => cmd.focus());
+	</script>
+</body>
 </html>
