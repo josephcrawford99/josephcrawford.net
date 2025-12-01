@@ -18,8 +18,16 @@ export const commands = {
 	help: {
 		desc: "Show available commands",
 		run: () => {
-			const list = Object.keys(commands).join(", ");
-			return `Available commands: ${list}`;
+			const list = Object.entries(commands)
+				.map(([name, cmd]) => cmd.desc ? `${name} - ${cmd.desc}` : name)
+				.join("\n");
+			return `Available commands:\n${list}`;
+		}
+	},
+	picture: {
+		desc: "What I look like",
+		run: () => {
+			return { html: `<img src="/JoeyPic.JPG" alt="Joey">` }
 		}
 	},
 	welcome: {
