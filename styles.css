@@ -16,14 +16,7 @@ body {
 	overflow-x: hidden;
 }
 
-#terminal {
-	word-wrap: break-word;
-	min-height: calc(100vh - 20px);
-	display: flex;
-	flex-direction: column;
-}
-
-#output { flex: 1; }
+#terminal { word-wrap: break-word; }
 
 #output div { white-space: pre-wrap; }
 
