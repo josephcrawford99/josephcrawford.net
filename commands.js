@@ -1,0 +1,40 @@
+const ASCII_ART = `   oooo                                        .oooooo.                                        .o88o.                          .o8
+   \`888                                       d8P'  \`Y8b                                       888 \`"                         "888
+    888  .ooooo.   .ooooo.  oooo    ooo      888          oooo d8b  .oooo.   oooo oooo    ooo o888oo   .ooooo.  oooo d8b  .oooo888
+    888 d88' \`88b d88' \`88b  \`88.  .8'       888          \`888""8P \`P  )88b   \`88. \`88.  .8'   888    d88' \`88b \`888""8P d88' \`888
+    888 888   888 888ooo888   \`88..8'        888           888      .oP"888    \`88..]88..8'    888    888   888  888     888   888
+    888 888   888 888    .o    \`888'         \`88b    ooo   888     d8(  888     \`888'\`888'     888    888   888  888     888   888
+.o. 88P \`Y8bod8P' \`Y8bod8P'     .8'           \`Y8bood8P'  d888b    \`Y888""8o     \`8'  \`8'     o888o   \`Y8bod8P' d888b    \`Y8bod88P"
+\`Y888P                      .o..P'
+                            \`Y8P'`;
+
+const ASCII_ART_SMALL = `     _                  ___                  __            _
+  _ | |___  ___ _  _   / __|_ _ __ ___ __ __/ _|___ _ _ __| |
+ | || / _ \\/ -_) || | | (__| '_/ _\` \\ V  V /  _/ _ \\ '_/ _\` |
+  \\__/\\___/\\___|\\_, |  \\___|_| \\__,_|\\_/\\_/|_| \\___/_| \\__,_|
+                |__/                                         `;
+
+export const commands = {
+	help: {
+		desc: "Show available commands",
+		run: () => {
+			const list = Object.keys(commands).join(", ");
+			return `Available commands: ${list}`;
+		}
+	},
+	welcome: {
+		desc: "Welcome message",
+		run: () => [
+			{ text: ASCII_ART, class: 'ascii-large' },
+			{ text: ASCII_ART_SMALL, class: 'ascii-small' },
+			{ html: `Welcome to my website!<br><img src="/JoeyPic.JPG" alt="Joey"><br>Type 'help' and press Enter to see what commands are available.` }
+		]
+	},
+	ascii: {
+		desc: "Show ASCII art",
+		run: () => [
+			{ text: ASCII_ART, class: 'ascii-large' },
+			{ text: ASCII_ART_SMALL, class: 'ascii-small' }
+		]
+	}
+};

@@ -1,18 +1,23 @@
 * { margin: 0; padding: 0; box-sizing: border-box; }
 
+::-webkit-scrollbar { width: 10px; }
+::-webkit-scrollbar-track { background: #000; }
+::-webkit-scrollbar-thumb { background: #0f0; }
+html { scrollbar-color: #0f0 #000; }
+
 body {
 	background: #000;
 	color: #0f0;
 	font-family: monospace;
 	font-size: 16px;
-	line-height: 1.4;
+	line-height: 1.2;
 	min-height: 100vh;
-	padding: 20px;
+	padding: 10px;
 }
 
-#terminal { white-space: pre-wrap; word-wrap: break-word; }
+#terminal { word-wrap: break-word; }
 
-#output div { margin-bottom: 2px; }
+#output div { white-space: pre-wrap; }
 
 #input-line { display: flex; }
 
@@ -29,3 +34,12 @@ body {
 }
 
 .cmd-line { color: #0f0; }
+
+#output img { max-width: 200px; margin: 5px 0; }
+
+.ascii-small { display: none; }
+
+@media (max-width: 1175px) {
+	.ascii-large { display: none; }
+	.ascii-small { display: block; }
+}

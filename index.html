@@ -15,20 +15,38 @@
 			<input type="text" id="cmd" autofocus autocomplete="off" spellcheck="false">
 		</div>
 	</div>
-	<script>
-		const commands = {
-			help: () => "Available commands: help\n\nType a command and press Enter."
-		};
+	<script type="module">
+		import { commands } from './commands.js';
 
 		const output = document.getElementById('output');
 		const cmd = document.getElementById('cmd');
 
-		function print(text, isCommand = false) {
+		async function print(content, isCommand = false) {
 			const line = document.createElement('div');
-			line.textContent = isCommand ? `visitor@joey:~$ ${text}` : text;
-			if (isCommand) line.className = 'cmd-line';
 			output.appendChild(line);
+			if (isCommand) {
+				line.className = 'cmd-line';
+				line.textContent = `visitor@joey:~$ ${content}`;
+			} else if (typeof content === 'object' && content.html) {
+				line.innerHTML = content.html;
+			} else if (typeof content === 'object' && content.text) {
+				if (content.class) line.className = content.class;
+				await type(line, content.text);
+			} else {
+				await type(line, content);
+			}
 			window.scrollTo(0, document.body.scrollHeight);
+		}
+
+		function type(el, text, charsPerTick = 5) {
+			return new Promise(resolve => {
+				let i = 0;
+				const interval = setInterval(() => {
+					el.textContent += text.slice(i, i + charsPerTick);
+					i += charsPerTick;
+					if (i >= text.length) { clearInterval(interval); resolve(); }
+				}, 1);
+			});
 		}
 
 		async function run(input) {
@@ -36,10 +54,14 @@
 			const name = args[0].toLowerCase();
 			if (!name) return;
 			print(input, true);
-			const fn = commands[name];
-			if (fn) {
-				const result = await fn(args.slice(1));
-				if (result) print(result);
+			const cmd = commands[name];
+			if (cmd) {
+				const result = await cmd.run(args.slice(1));
+				if (Array.isArray(result)) {
+					for (const part of result) await print(part);
+				} else if (result) {
+					await print(result);
+				}
 			} else {
 				print(`Command not found: ${name}. Type 'help' for available commands.`);
 			}
@@ -53,6 +75,8 @@
 		});
 
 		document.body.addEventListener('click', () => cmd.focus());
+
+		run('welcome');
 	</script>
 </body>
 </html>
