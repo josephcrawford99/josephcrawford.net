@@ -78,7 +78,9 @@
 			}
 		});
 
-		document.body.addEventListener('click', () => cmd.focus());
+		document.body.addEventListener('click', (e) => {
+			if (!e.target.closest('a')) cmd.focus();
+		});
 
 		run('welcome');
 	</script>
