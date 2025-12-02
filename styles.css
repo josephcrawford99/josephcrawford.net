@@ -27,10 +27,17 @@ header {
 	z-index: 100;
 }
 
-header a {
+a, a:visited {
 	color: #0f0;
+}
+
+header a {
 	text-decoration: none;
 	margin-right: 20px;
+}
+
+header a:first-child {
+	margin-left: 10px;
 }
 
 header a::before { content: ''; }
@@ -70,18 +77,9 @@ header a:hover::before { content: '> '; }
 	.ascii-small { font-size: 8px; line-height: 1; }
 }
 
-/* Resume & Contact Pages */
 main {
 	max-width: 800px;
 	line-height: 1.6;
-}
-
-main a {
-	color: #0f0;
-}
-
-main a:hover {
-	text-decoration: none;
 }
 
 h1 {
